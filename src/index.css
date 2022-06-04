@@ -1,0 +1,33 @@
+html,
+body {
+  min-height: 100% !important;
+  height: 100%;
+}
+
+.leaflet-container {
+  max-height: 350px;
+  height: 30vh;
+  width: 90vw;
+}
+
+@media only screen and (min-width: 30em) {
+  .leaflet-container {
+    max-width: 400px;
+    height: 30vh;
+    max-height: 650px;
+  }
+}
+
+@media only screen and (min-width: 62em) {
+  .leaflet-container {
+    max-width: 600px;
+    height: 40vh;
+    max-height: 650px;
+  }
+}
+
+@media only screen and (min-width: 95em) {
+  .leaflet-container {
+    max-width: 800px;
+  }
+}
