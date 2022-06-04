@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Flex, theme, Heading, Stack } from "@chakra-ui/react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { LocationType } from "app/types";
 import LocationDetails from "components/LocationDetails";
 

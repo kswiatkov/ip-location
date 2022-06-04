@@ -47,7 +47,7 @@ export const App = () => {
         ...searchHistory.filter(({ as }) => as !== locationData.as),
       ]);
     }
-  }, [locationData]);
+  }, [locationData, searchHistory, toast]);
 
   return (
     <Flex h="100vh">
