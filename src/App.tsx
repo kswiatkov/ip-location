@@ -42,12 +42,12 @@ export const App = () => {
     if (!locationData?.status && locationData?.message) {
       toast({ description: locationData.message, status: "error" });
     } else if (locationData) {
-      setSearchHistory([
+      setSearchHistory((prev) => [
         locationData,
-        ...searchHistory.filter(({ as }) => as !== locationData.as),
+        ...prev.filter(({ as }) => as !== locationData.as),
       ]);
     }
-  }, [locationData, searchHistory, toast]);
+  }, [locationData, toast]);
 
   return (
     <Flex h="100vh">

@@ -3,7 +3,7 @@ import axios from "axios";
 import { LocationType } from "app/types";
 
 const instance = axios.create({
-  baseURL: "https://ip-location-proxy.herokuapp.com/proxy/",
+  baseURL: "https://ip-location-proxy.herokuapp.com/",
   timeout: 3000,
 });
 
