@@ -32,16 +32,20 @@ export const App = () => {
   });
   const onSubmit = handleSubmit(() => refetch());
 
-  const { data: clientLocationData } = useLocation("");
-  const { data: locationData, refetch } = useLocation(
-    getValues("searchInput"),
-    false
-  );
+  const { data: clientLocationData, isLoading: isClientLocationLoading } =
+    useLocation("");
+  const {
+    data: locationData,
+    refetch,
+    isLoading: isLocationLoading,
+  } = useLocation(getValues("searchInput"), false);
 
   useEffect(() => {
+    // toast notification with server error
     if (!locationData?.status && locationData?.message) {
       toast({ description: locationData.message, status: "error" });
     } else if (locationData) {
+      // adding new results to history and removing old one if it duplicates
       setSearchHistory((prev) => [
         locationData,
         ...prev.filter(({ as }) => as !== locationData.as),
@@ -53,8 +57,12 @@ export const App = () => {
     <Flex h="100vh">
       {!!searchHistory.length && <SearchHistory historyList={searchHistory} />}
       <Flex mt={50} marginX="auto" direction="column" alignItems="center">
-        {clientLocationData?.status && (
-          <Location header="Your location" location={clientLocationData} />
+        {(clientLocationData?.status || isClientLocationLoading) && (
+          <Location
+            isLoading={isClientLocationLoading}
+            header="Your location"
+            location={clientLocationData}
+          />
         )}
         <Box w="100%">
           <form onSubmit={onSubmit}>
@@ -81,8 +89,12 @@ export const App = () => {
               </FormErrorMessage>
             </FormControl>
           </form>
-          {locationData?.status && (
-            <Location header="Search result" location={locationData} />
+          {(locationData?.status || isLocationLoading) && (
+            <Location
+              header="Search result"
+              location={locationData}
+              isLoading={isLocationLoading}
+            />
           )}
         </Box>
       </Flex>
