@@ -39,7 +39,6 @@ const useLocation = (address: string, enabled = true) =>
     () => getLocation(address),
     {
       enabled,
-      retry: false,
     }
   );
 
