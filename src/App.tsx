@@ -56,7 +56,13 @@ export const App = () => {
   return (
     <Flex h="100vh">
       {!!searchHistory.length && <SearchHistory historyList={searchHistory} />}
-      <Flex mt={50} marginX="auto" direction="column" alignItems="center">
+      <Flex
+        mt={{ base: 50, xl: 0 }}
+        marginX="auto"
+        direction="column"
+        alignItems="center"
+        justifyContent={{ base: "flex-start", xl: "center" }}
+      >
         {(clientLocationData?.status || isClientLocationLoading) && (
           <Location
             isLoading={isClientLocationLoading}
