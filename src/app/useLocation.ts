@@ -27,7 +27,7 @@ const fields = [
 const getLocation = async (address: string) => {
   try {
     const { data } = await instance.get(address, { params: { fields } });
-    return { ...data, status: data.status === "success" };
+    return { ...data, status: data.status === "success", querySend: address };
   } catch (error) {
     return { status: false, message: "Something went wrong" };
   }

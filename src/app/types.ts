@@ -12,5 +12,6 @@ export interface LocationType {
   lon: number;
   isp: string;
   query: string;
+  querySend: string;
   as: string;
 }

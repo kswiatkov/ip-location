@@ -48,7 +48,7 @@ export const App = () => {
       // adding new results to history and removing old one if it duplicates
       setSearchHistory((prev) => [
         locationData,
-        ...prev.filter(({ as }) => as !== locationData.as),
+        ...prev.filter(({ querySend }) => querySend !== locationData.querySend),
       ]);
     }
   }, [locationData, toast]);

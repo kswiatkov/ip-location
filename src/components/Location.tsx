@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, theme, Heading, Stack, Skeleton } from "@chakra-ui/react";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
 import { LocationType } from "app/types";
 import LocationDetails from "components/LocationDetails";
@@ -10,6 +10,12 @@ interface LocationProps {
   header: string;
   isLoading: boolean;
 }
+
+const MapControl = ({ position }: { position: LatLngExpression }) => {
+  const parentMap = useMap();
+  parentMap.setView(position);
+  return null;
+};
 
 const Location: React.FC<LocationProps> = ({ header, location, isLoading }) => {
   const position: LatLngExpression = [location?.lat ?? 0, location?.lon ?? 0];
@@ -21,7 +27,8 @@ const Location: React.FC<LocationProps> = ({ header, location, isLoading }) => {
       my={5}
     >
       <Skeleton isLoaded={!isLoading}>
-        <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
+        <MapContainer center={[0, 0]} zoom={13} scrollWheelZoom={true}>
+          <MapControl position={position}></MapControl>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
