@@ -4,7 +4,7 @@ import { LocationType } from "app/types";
 
 const instance = axios.create({
   baseURL: "https://ip-location-proxy.herokuapp.com/",
-  timeout: 3000,
+  // timeout: 3000 - disabled due to heroku dyno going idle on free plan
 });
 
 const fields = [
